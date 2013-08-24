@@ -44,11 +44,11 @@ public class Roll extends TestCase {
 		return ((hitted==true) && (score==0));
 	}
 
-	private boolean isSpare() {
+	boolean isSpare() {
 		return ((isFirst==false) && (restPin==0));
 	}
 
-	private boolean isStrike() {
+	boolean isStrike() {
 		return ((isFirst==true) && (restPin==0));
 	}
 

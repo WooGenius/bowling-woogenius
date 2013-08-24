@@ -4,15 +4,14 @@ import junit.framework.TestCase;
 
 public class FrameTest extends TestCase {
 	public void testStrike() throws Exception {
-		Frame frame = new Frame();
+		NormalFrame frame = new NormalFrame();
 		frame.hit(10);
 		assertEquals(10, frame.getScore());
-		System.out.println(frame.getSymbol());
 		assertEquals("X", frame.getSymbol());
 	}
 	
 	public void testSpare() throws Exception {
-		Frame frame = new Frame();
+		NormalFrame frame = new NormalFrame();
 		frame.hit(5);
 		frame.hit(5);
 		assertEquals(10, frame.getScore());
@@ -20,7 +19,7 @@ public class FrameTest extends TestCase {
 	}
 	
 	public void testGutter() throws Exception {
-		Frame frame = new Frame();
+		NormalFrame frame = new NormalFrame();
 		frame.hit(0);
 		frame.hit(0);
 		assertEquals(0, frame.getScore());
@@ -28,7 +27,7 @@ public class FrameTest extends TestCase {
 	}
 	
 	public void testScore() throws Exception {
-		Frame frame = new Frame();
+		NormalFrame frame = new NormalFrame();
 		frame.hit(1);
 		frame.hit(2);
 		assertEquals(3, frame.getScore());
@@ -36,8 +35,16 @@ public class FrameTest extends TestCase {
 	}
 	
 	public void testNotHitted() throws Exception {
-		Frame frame = new Frame();
+		NormalFrame frame = new NormalFrame();
 		assertEquals(0, frame.getScore());
 		assertEquals(".", frame.getSymbol());
+	}
+	
+	public void testIsLastFrame() throws Exception {
+		LastFrame lastFrame = new LastFrame();
+		lastFrame.hit(5);
+		lastFrame.hit(3);
+		assertEquals(8, lastFrame.getScore());
+		assertEquals("5|3", lastFrame.getSymbol());
 	}
 }

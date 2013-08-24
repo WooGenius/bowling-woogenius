@@ -8,7 +8,6 @@ public class BowlingGame {
 	
 	public void init() {
 		for (int i = 0; i < TOTAL_FRAME_NUM; i++) {
-			frames.add(new Frame());
 		}
 	}
 	

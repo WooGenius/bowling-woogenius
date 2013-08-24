@@ -3,7 +3,7 @@ package bowling;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Frame {
+public abstract class Frame {
 	List<Roll> rolls = new ArrayList<Roll>();
 	int score = 0;
 	int restPin = 10;
@@ -20,16 +20,7 @@ public class Frame {
 		return score;
 	}
 
-	public void hit(int hittedPin) {
-		if(isFirst) {
-			rolls.get(0).hit(hittedPin);
-			restPin -= hittedPin;
-			isFirst = false;
-		} else {
-			rolls.add(new Roll(isFirst, restPin));
-			rolls.get(1).hit(hittedPin);
-		}
-	}
+	public abstract void hit(int hittedPin);
 
 	public String getSymbol() {
 		StringBuilder sb = new StringBuilder();

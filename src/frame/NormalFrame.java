@@ -12,6 +12,7 @@ public class NormalFrame extends Frame{
 		} else {
 			rolls.add(new Roll(isFirst, restPin));
 			rolls.get(1).hit(hittedPin);
+			isFinished = true;
 		}
 	}
 }

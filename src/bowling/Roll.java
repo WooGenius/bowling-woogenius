@@ -6,7 +6,7 @@ public class Roll extends TestCase {
 	boolean isFirst;
 	boolean hitted = false;
 	int restPin;
-	Integer score;
+	Integer score = 0;
 	char symbol;
 
 	public Roll(boolean isFirst, int restPin) {
@@ -50,6 +50,10 @@ public class Roll extends TestCase {
 
 	private boolean isStrike() {
 		return ((isFirst==true) && (restPin==0));
+	}
+
+	public int getScore() {
+		return score;
 	}
 
 }

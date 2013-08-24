@@ -2,6 +2,8 @@ package bowling;
 
 import java.util.*;
 
+import frame.Frame;
+
 public class BowlingGame {
 	final int TOTAL_FRAME_NUM = 10;
 	List<Frame> frames = new ArrayList<Frame>();

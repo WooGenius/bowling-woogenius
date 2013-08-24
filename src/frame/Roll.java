@@ -1,4 +1,4 @@
-package bowling;
+package frame;
 
 import junit.framework.TestCase;
 

@@ -1,4 +1,4 @@
-package bowling;
+package frame;
 
 import java.util.ArrayList;
 import java.util.List;

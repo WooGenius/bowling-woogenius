@@ -1,5 +1,6 @@
-package bowling;
+package frame;
 
+import frame.Roll;
 import junit.framework.TestCase;
 
 public class RollTest extends TestCase {

@@ -1,5 +1,7 @@
-package bowling;
+package frame;
 
+import frame.LastFrame;
+import frame.NormalFrame;
 import junit.framework.TestCase;
 
 public class FrameTest extends TestCase {

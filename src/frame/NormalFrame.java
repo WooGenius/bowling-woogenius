@@ -1,4 +1,4 @@
-package bowling;
+package frame;
 
 public class NormalFrame extends Frame{
 

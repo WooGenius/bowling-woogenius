@@ -1,6 +1,5 @@
 package bowling;
 
-import static org.junit.Assert.*;
 import junit.framework.TestCase;
 
 public class FrameTest extends TestCase {

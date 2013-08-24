@@ -20,10 +20,6 @@ public class Frame {
 		return score;
 	}
 
-	public Roll getRoll(int orderOfRoll) {
-		return rolls.get(orderOfRoll-1);
-	}
-
 	public void hit(int hittedPin) {
 		if(isFirst) {
 			rolls.get(0).hit(hittedPin);

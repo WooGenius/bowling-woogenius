@@ -11,7 +11,7 @@ public class FirstRoll implements Rollable{
 	public char getSymbol() {
 		if (isStrike()) {
 			symbol = 'X';
-		} else if (!hitted){ // not hitted
+		} else if (!isHitted()){ // not hitted
 			symbol = '.';
 		} else if (isGutter()) {
 			symbol = '-';
@@ -20,6 +20,10 @@ public class FirstRoll implements Rollable{
 		}
 
 		return symbol;
+	}
+	
+	private boolean isGutter() {
+		return ((hitted==true) && score==0);
 	}
 	
 	@Override
@@ -34,11 +38,28 @@ public class FirstRoll implements Rollable{
 		hitted = true;
 	}
 	
-	private boolean isStrike() {
+	@Override
+	public boolean isStrike() {
 		return (restPin==0);
 	}
+
+	@Override
+	public String toString() {
+		return "FirstRoll [score=" + score + ", symbol=" + symbol + "]";
+	}
+
+	@Override
+	public boolean isHitted() {
+		return hitted;
+	}
 	
-	private boolean isGutter() {
-		return ((hitted==true) && score==0);
+	@Override
+	public int getRestPin() {
+		return restPin;
+	}
+
+	@Override
+	public boolean isSpare() {
+		return false;
 	}
 }

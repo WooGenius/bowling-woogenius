@@ -15,7 +15,7 @@ public class SecondRoll implements Rollable {
 	public char getSymbol() {
 		if (isSpare()) {
 			symbol = '/';
-		} else if (!hitted){ // not hitted
+		} else if (!isHitted()){ // not hitted
 			symbol = '.';
 		} else if (isGutter()) {
 			symbol = '-';
@@ -24,6 +24,10 @@ public class SecondRoll implements Rollable {
 		}
 
 		return symbol;
+	}
+	
+	private boolean isGutter() {
+		return ((hitted==true) && score==0);
 	}
 	
 	@Override
@@ -38,12 +42,28 @@ public class SecondRoll implements Rollable {
 		hitted = true;
 	}
 	
-	private boolean isSpare() {
+	@Override
+	public boolean isSpare() {
 		return (restPin==0);
 	}
-	
-	private boolean isGutter() {
-		return ((hitted==true) && score==0);
+
+	@Override
+	public String toString() {
+		return "SecondRoll [score=" + score + ", symbol=" + symbol + "]";
 	}
 
+	@Override
+	public boolean isHitted() {
+		return hitted;
+	}
+
+	@Override
+	public boolean isStrike() {
+		return false;
+	}
+
+	@Override
+	public int getRestPin() {
+		return restPin;
+	}
 }

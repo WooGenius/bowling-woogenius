@@ -2,58 +2,78 @@ package bowling;
 
 import java.util.*;
 
-import frame.*;
+import roll.*;
 
 public class BowlingGame {
-	private static final int NORMAL_FRAME_NUM = 9;
-	List<Frame> frames = new ArrayList<Frame>();
-	int frameCount = 0;
+	private static final int TOTAL_FRAME_NUM = 10;
+	Map<Integer, List<Rollable>> bowlingGame = new HashMap<Integer, List<Rollable>>();
+	int frameCount = 1;
 	
-	public void init() {
-		for (int i = 0; i < NORMAL_FRAME_NUM; i++) {
-			frames.add(new NormalFrame());
+	public BowlingGame() {
+		for (int frameOrder = 1; frameOrder <= TOTAL_FRAME_NUM; frameOrder++) {
+			bowlingGame.put(frameOrder, makeRollList());
 		}
-		frames.add(new LastFrame());
+	}
+
+	private List<Rollable> makeRollList() {
+		List<Rollable> rolls = new ArrayList<Rollable>();
+		rolls.add(new FirstRoll());
+		return rolls;
+	}
+
+	public int size() {
+		return bowlingGame.size();
 	}
 
 	public void hit(int hittedPin) {
-		Frame hittedFrame = getFrame(frameCount);
-		hittedFrame.hit(hittedPin);
-		if (hittedFrame.isFinished()) {
+		List<Rollable> currentFrame = bowlingGame.get(frameCount);
+		if (frameCount != 10) {
+			hitNormalFrame(hittedPin, currentFrame);
+		} else {
+			hitLastFrame(hittedPin, currentFrame);
+		}
+	}
+
+	private void hitNormalFrame(int hittedPin, List<Rollable> currentFrame) {
+		FirstRoll firstRoll = (FirstRoll) currentFrame.get(0);
+		if (!firstRoll.isHitted()) {	// if firstRoll is not hitted
+			firstRoll.hit(hittedPin);
+		} else if(firstRoll.isStrike()) {	// if firstRoll is strike
 			frameCount++;
+			hit(hittedPin);
+		} else {
+			int restPin = firstRoll.getRestPin();
+			currentFrame.add(new SecondRoll(restPin));
+			currentFrame.get(1).hit(hittedPin);
+			frameCount ++;
+		}
+	}
+	
+	int lastFrameCount = 0;
+	private void hitLastFrame(int hittedPin, List<Rollable> currentFrame) {
+		Rollable currentRoll = currentFrame.get(lastFrameCount);
+		if (!currentRoll.isHitted()) {	// if currentRoll is not hitted
+			currentRoll.hit(hittedPin);
+		} else if(currentRoll.isStrike()) {	// if currentRoll is strike
+			currentFrame.add(new FirstRoll());
+			hitNextRoll(hittedPin, currentFrame);
+		} else if(currentRoll.isSpare()) {
+			currentFrame.add(new FirstRoll());
+			hitNextRoll(hittedPin, currentFrame);
+		} else {
+			int restPin = currentRoll.getRestPin();
+			currentFrame.add(new SecondRoll(restPin));
+			hitNextRoll(hittedPin, currentFrame);
 		}
 	}
 
-	public Frame getFrame(int frameCount) {
-		return frames.get(frameCount);
+	private void hitNextRoll(int hittedPin, List<Rollable> currentFrame) {
+		Rollable nextRoll = currentFrame.get(++lastFrameCount);
+		nextRoll.hit(hittedPin);
 	}
 
-	public int getFrameScore(int frameCount) {
-		int frameScore = 0;
-		for (int i = 0; i <= frameCount; i++) {
-			frameScore += getFrame(i).getScore();
-			frameScore += getBonusScore(getFrame(i), i);
-		}
-		
-		return frameScore;
-	}
-
-	private int getBonusScore(Frame frame, int frameCount) {
-		int bonusScore = 0;
-		Frame nextFrame = getFrame(frameCount+1);
-		Frame afterNextFrame = getFrame(frameCount+2);
-		
-		if (frame.isStrike()) {
-			bonusScore += nextFrame.getScore();
-			if (nextFrame.isStrike()) {
-				bonusScore += afterNextFrame.getFirstScore(); 
-			}
-		}
-			
-		if (frame.isSpare()) {
-			bonusScore += nextFrame.getFirstScore();
-		}
-			
-		return bonusScore;
+	@Override
+	public String toString() {
+		return "BowlingGame [bowlingGame=" + bowlingGame + "]";
 	}
 }

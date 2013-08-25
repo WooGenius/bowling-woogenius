@@ -56,5 +56,4 @@ public class BowlingGame {
 			
 		return bonusScore;
 	}
-
 }

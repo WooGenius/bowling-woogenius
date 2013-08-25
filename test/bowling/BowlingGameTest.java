@@ -26,6 +26,7 @@ public class BowlingGameTest extends TestCase {
 		BowlingGame bowlingGame = new BowlingGame();
 		bowlingGame.init();
 		bowlingGame.hit(10);
+		assertEquals(10, bowlingGame.getFrameScore(0));
 		bowlingGame.hit(5);
 		bowlingGame.hit(5);
 		bowlingGame.hit(3);
@@ -34,4 +35,10 @@ public class BowlingGameTest extends TestCase {
 		assertEquals(33, bowlingGame.getFrameScore(1));
 		assertEquals(40, bowlingGame.getFrameScore(2));
 	}
+	
+	public void testGetNextScore() throws Exception {
+		BowlingGame bowlingGame = new BowlingGame();
+		bowlingGame.init();
+		}
+	
 }

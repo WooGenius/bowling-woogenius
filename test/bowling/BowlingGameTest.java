@@ -29,7 +29,8 @@ public class BowlingGameTest extends TestCase {
 		bowlingGame2.hit(5);
 		bowlingGame2.hit(5);
 		bowlingGame2.hit(3);
-		bowlingGame2.hit(3);
+		bowlingGame2.hit(0);
+		bowlingGame2.hit(10);
 		bowlingGame2.hit(10);
 		bowlingGame2.hit(10);
 		bowlingGame2.hit(10);
@@ -39,9 +40,11 @@ public class BowlingGameTest extends TestCase {
 		bowlingGame2.hit(10);
 		bowlingGame2.hit(5);
 		bowlingGame2.hit(5);
-		bowlingGame2.hit(10);
-		bowlingGame2.hit(10);
 		System.out.println(bowlingGame2);
+		for (int i = 1; i < 11; i++) {
+			System.out.println(bowlingGame2.getFrameScore(i));
+			System.out.println(bowlingGame2.getFrameSymbol(i));
+		}
 	}
 	
 	public void testNextScore() throws Exception {
@@ -78,5 +81,17 @@ public class BowlingGameTest extends TestCase {
 		assertEquals(20, bowlingGame.getFrameScore(1));
 		assertEquals(18, bowlingGame.getFrameScore(2));
 		assertEquals(8, bowlingGame.getFrameScore(3));
+	}
+	
+	public void testGetFrameSymbol() throws Exception {
+		BowlingGame bowlingGame = new BowlingGame();
+		bowlingGame.hit(5);
+		bowlingGame.hit(5);
+		bowlingGame.hit(10);
+		bowlingGame.hit(5);
+		bowlingGame.hit(3);
+		assertEquals("5|/", bowlingGame.getFrameSymbol(1));
+		assertEquals("X", bowlingGame.getFrameSymbol(2));
+		assertEquals("5|3", bowlingGame.getFrameSymbol(3));
 	}
 }

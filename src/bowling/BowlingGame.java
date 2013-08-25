@@ -77,18 +77,6 @@ public class BowlingGame {
 		nextRoll.hit(hittedPin);
 	}
 
-	public int getNextScore(int frameOrder, int rollOrder) {
-		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
-		int nextScore = 0;
-		if (currentFrame.size() >= rollOrder+1) {
-			nextScore = currentFrame.get(rollOrder).getScore();
-		} else {
-			List<Rollable> nextFrame = bowlingGame.get(frameOrder+1);
-			nextScore = nextFrame.get(0).getScore();
-		}
-		return nextScore;
-	}
-
 	public int getFrameScore(int frameOrder) {
 		int frameScore = 0;
 		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
@@ -104,9 +92,16 @@ public class BowlingGame {
 		int bonusScore = 0;
 		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
 		Rollable currentRoll = currentFrame.get(rollOrder-1);
+
 		if (currentRoll.isSpare()) {
+			if ((frameOrder==10) && (rollOrder==3)) {
+				return 0;
+			}
 			bonusScore = getNextScore(frameOrder, rollOrder);
 		} else if (currentRoll.isStrike()) {
+			if (frameOrder == 10) {
+				return 0;
+			}
 			bonusScore = getNextScore(frameOrder, rollOrder);
 			if (hasNextRoll(frameOrder, rollOrder)) {
 				bonusScore = getNextScore(frameOrder, rollOrder+1);
@@ -116,7 +111,18 @@ public class BowlingGame {
 		}
 		return bonusScore;
 	}
-
+	
+	public int getNextScore(int frameOrder, int rollOrder) {
+		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
+		int nextScore = 0;
+		if (currentFrame.size() >= rollOrder+1) {
+			nextScore = currentFrame.get(rollOrder).getScore();
+		} else {
+			List<Rollable> nextFrame = bowlingGame.get(frameOrder+1);
+			nextScore = nextFrame.get(0).getScore();
+		}
+		return nextScore;
+	}
 
 	public boolean hasNextRoll(int frameOrder, int rollOrder) {
 		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
@@ -127,8 +133,20 @@ public class BowlingGame {
 		}
 	}
 	
+	public String getFrameSymbol(int frameOrder) {
+		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
+		StringBuilder sb = new StringBuilder();
+		for (Rollable roll : currentFrame) {
+			sb.append(roll.getSymbol());
+			sb.append('|');
+		}
+		sb.deleteCharAt(sb.lastIndexOf("|"));
+		return sb.toString();
+	}
+	
 	@Override
 	public String toString() {
 		return "BowlingGame [bowlingGame=" + bowlingGame + "]";
 	}
+
 }

@@ -37,9 +37,13 @@ public class SecondRoll implements Rollable {
 
 	@Override
 	public void hit(int hittedPin) {
-		score = hittedPin;
-		restPin -= hittedPin;
-		hitted = true;
+		if (hittedPin <= restPin) {
+			score = hittedPin;
+			restPin -= hittedPin;
+			hitted = true;
+		} else {
+			System.out.println("hit again");
+		}
 	}
 	
 	@Override

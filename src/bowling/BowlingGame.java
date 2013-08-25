@@ -52,6 +52,11 @@ public class BowlingGame {
 	int lastFrameCount = 0;
 	private void hitLastFrame(int hittedPin, List<Rollable> currentFrame) {
 		Rollable currentRoll = currentFrame.get(lastFrameCount);
+		
+		if (lastFrameCount==2) {
+			return;
+		}
+		
 		if (!currentRoll.isHitted()) {	// if currentRoll is not hitted
 			currentRoll.hit(hittedPin);
 		} else if(currentRoll.isStrike()) {	// if currentRoll is strike
@@ -72,6 +77,56 @@ public class BowlingGame {
 		nextRoll.hit(hittedPin);
 	}
 
+	public int getNextScore(int frameOrder, int rollOrder) {
+		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
+		int nextScore = 0;
+		if (currentFrame.size() >= rollOrder+1) {
+			nextScore = currentFrame.get(rollOrder).getScore();
+		} else {
+			List<Rollable> nextFrame = bowlingGame.get(frameOrder+1);
+			nextScore = nextFrame.get(0).getScore();
+		}
+		return nextScore;
+	}
+
+	public int getFrameScore(int frameOrder) {
+		int frameScore = 0;
+		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
+		for (int rollOrder = 1; rollOrder <= currentFrame.size(); rollOrder++) {
+			Rollable currentRoll = currentFrame.get(rollOrder-1);
+			frameScore += currentRoll.getScore();
+			frameScore += getBonusScore(frameOrder, rollOrder);
+		}
+		return frameScore;
+	}
+	
+	private int getBonusScore(int frameOrder, int rollOrder) {
+		int bonusScore = 0;
+		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
+		Rollable currentRoll = currentFrame.get(rollOrder-1);
+		if (currentRoll.isSpare()) {
+			bonusScore = getNextScore(frameOrder, rollOrder);
+		} else if (currentRoll.isStrike()) {
+			bonusScore = getNextScore(frameOrder, rollOrder);
+			if (hasNextRoll(frameOrder, rollOrder)) {
+				bonusScore = getNextScore(frameOrder, rollOrder+1);
+			} else {
+				bonusScore += getNextScore(frameOrder+1, 1);
+			}
+		}
+		return bonusScore;
+	}
+
+
+	public boolean hasNextRoll(int frameOrder, int rollOrder) {
+		List<Rollable> currentFrame = bowlingGame.get(frameOrder);
+		if (currentFrame.size() >= rollOrder+1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "BowlingGame [bowlingGame=" + bowlingGame + "]";

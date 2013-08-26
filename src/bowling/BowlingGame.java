@@ -149,4 +149,8 @@ public class BowlingGame {
 		return "BowlingGame [bowlingGame=" + bowlingGame + "]";
 	}
 
+	public int getFrameCount() {
+		return frameCount;
+	}
+
 }

@@ -31,4 +31,5 @@ public class PlayerTest extends TestCase {
 		player.hit(5);
 		System.out.println(player.getSymbolList().toString());
 	}
+
 }

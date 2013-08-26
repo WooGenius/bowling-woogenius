@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Player {
 	String name;
+	int hittedPin;
 	BowlingGame bowlingGame = new BowlingGame();
 	
 	public Player(String name) {
@@ -25,6 +26,7 @@ public class Player {
 
 	public void hit(int hittedPin) {
 		bowlingGame.hit(hittedPin);
+		this.hittedPin = hittedPin;
 	}
 
 	public List<String> getSymbolList() {
@@ -34,6 +36,10 @@ public class Player {
 		}
 		return symbols;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Player [name=" + name + "]";
+	}
 
 }

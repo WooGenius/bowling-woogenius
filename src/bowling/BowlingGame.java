@@ -5,8 +5,10 @@ import java.util.*;
 import frame.*;
 
 public class BowlingGame {
-	private List<Integer> rolls = new ArrayList<Integer>();
-	public static List<Frame> frames = new ArrayList<Frame>();
+	private List<Integer> rolls = new Stack<Integer>();
+	private List<Integer> scores = new ArrayList<Integer>();
+	private List<Frame> frames = new ArrayList<Frame>();
+	
 	private int frameOrder = 1;
 	private boolean isLast;
 	private Identifier id;
@@ -14,10 +16,14 @@ public class BowlingGame {
 	public void hit(int hittedPin) {
 		rolls.add(hittedPin);
 		isLast = (frameOrder == 10);
+		organizeFrame();
+	}
+
+	private void organizeFrame() {
 		id = new Identifier(rolls, isLast);
 		if (!id.isValid()) {
 			System.out.println("Invalid Pin!");
-			rolls.remove(rolls.size()-1);	// remove last integer
+			((Stack<Integer>) rolls).pop();	// remove last integer
 		} else if (curretFrameIsFinished()) {
 			frames.add(new Frame(frameOrder, rolls));
 			rolls.clear();

@@ -34,7 +34,6 @@ public class BowlingGameTest extends TestCase {
 		bowlingGame.hit(3);
 		List<String> symbols = bowlingGame.getSymbols();
 		assertEquals(10, bowlingGame.frameSize());
-		System.out.println(bowlingGame.frames);
 		assertEquals(10, symbols.size());
 		System.out.println(symbols);
 	}
@@ -62,7 +61,6 @@ public class BowlingGameTest extends TestCase {
 		bowlingGame.hit(3);
 		List<String> symbols = bowlingGame.getSymbols();
 		assertEquals(10, bowlingGame.frameSize());
-		System.out.println(bowlingGame.frames);
 		assertEquals(10, symbols.size());
 		System.out.println(symbols);
 	}

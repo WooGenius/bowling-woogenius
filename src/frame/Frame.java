@@ -4,24 +4,18 @@ import java.util.*;
 
 public class Frame {
 
-	private List<Integer> rolls = new ArrayList<Integer>();
 	private int frameOrder;
 	private boolean isLast;
 	private Identifier id;
 	private Symbol symbol;
-	private Score score;
 	
-	public Frame(int frameOrder) {
+	public Frame(int frameOrder, List<Integer> rolls) {
 		this.frameOrder = frameOrder;
 		this.isLast = (frameOrder==10);
-	}
-
-	public void hit(int hittedPin) {
-		rolls.add(hittedPin);
 		id = new Identifier(rolls, isLast);
-		score = new Score(rolls, frameOrder, isLast);
 		symbol = new Symbol(rolls);
 	}
+
 
 	public String getSymbol() {
 		return symbol.getSymbol();
@@ -35,8 +29,9 @@ public class Frame {
 		return id.isValid();
 	}
 
-	public int getScore() {
-		return score.getScore();
+	@Override
+	public String toString() {
+		return "Frame [frameOrder=" + frameOrder + ", symbol=" + symbol + "]";
 	}
-	
+
 }

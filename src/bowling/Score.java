@@ -1,4 +1,4 @@
-package frame;
+package bowling;
 
 import java.util.List;
 
@@ -19,4 +19,9 @@ public class Score {
 		return score;
 	}
 
+	@Override
+	public String toString() {
+		return "Score [score=" + score + "]";
+	}
+	
 }

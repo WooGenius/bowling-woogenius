@@ -66,17 +66,17 @@ public class IdentifierTest extends TestCase {
 		assertFalse(id.isValid());
 		
 		List<Integer> rolls2 = new ArrayList<Integer>();
-		rolls2.add(8);
-		rolls2.add(8);
+		rolls2.add(5);
+		rolls2.add(7);
 		id = new Identifier(rolls2);
 		assertFalse(id.isValid());
 		
 		List<Integer> rolls3 = new ArrayList<Integer>();
-		rolls3.add(5);
-		rolls3.add(5);
-		rolls3.add(5);
+		rolls3.add(10);
+		rolls3.add(7);
+		rolls3.add(7);
 		id = new Identifier(rolls3, true);
-		assertTrue(id.isValid());
+		assertFalse(id.isValid());
 	}
 	
 }

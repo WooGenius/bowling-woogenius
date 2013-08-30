@@ -62,7 +62,7 @@ public class Identifier {
 	}
 
 	boolean isStrikeForLastRoll() {
-		return (rolls.get(0)==10) && (rolls.get(1)!=10);
+		return (rolls.get(0)==10);
 	}
 	
 	boolean isDoubleStrikeForLastRoll() {

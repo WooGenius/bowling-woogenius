@@ -1,4 +1,4 @@
-package frame;
+package bowling;
 
 import java.util.*;
 

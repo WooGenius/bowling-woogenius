@@ -13,9 +13,6 @@ public class Symbol {
 
 	public Symbol(List<Integer> rolls) {
 		this.rolls = rolls;
-	}
-
-	public String getSymbol() {
 		Identifier id = new Identifier(rolls);
 		if (id.isSpare()) {
 			symbol.append(makeSymbol(0));
@@ -32,6 +29,9 @@ public class Symbol {
 			}
 			symbol.deleteCharAt(symbol.lastIndexOf(DIVISION_SYMBOL));
 		}
+	}
+	
+	public String getSymbol() {
 		return symbol.toString();
 	}
 
@@ -46,4 +46,10 @@ public class Symbol {
 		}
 		return symbol;
 	}
+
+	@Override
+	public String toString() {
+		return "Symbol [symbol=" + symbol + "]";
+	}
+
 }

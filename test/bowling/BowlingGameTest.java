@@ -65,7 +65,7 @@ public class BowlingGameTest extends TestCase {
 		System.out.println(symbols);
 	}
 	
-	public void testScore() throws Exception {
+	public void testScoreAndSymbol() throws Exception {
 		BowlingGame bowlingGame = new BowlingGame();
 		bowlingGame.hit(5);
 		System.out.println(bowlingGame.getScores().toString());

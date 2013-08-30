@@ -14,11 +14,14 @@ public class BowlingGame {
 	private Identifier id;
 	private Score score = new Score();
 
-	public void roll(int hittedPin) {
+	public void roll(int hittedPin) throws GameOverException {
 		rolls.add(hittedPin);
 		isLast = (frameOrder == 10);
 		generateScore(hittedPin);
 		organizeFrame(rolls, isLast);
+		if (frameOrder==11)
+			throw new GameOverException(this);
+			
 	}
 
 	private void generateScore(int hittedPin) {
@@ -39,7 +42,7 @@ public class BowlingGame {
 			frames.add(new Frame(frameOrder, rolls));
 			rolls.clear();
 			frameOrder++;
-		}
+			}
 	}
 
 	private boolean curretFrameIsFinished() {
@@ -70,5 +73,9 @@ public class BowlingGame {
 	public List<Integer> getScores() {
 		return scores;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "BowlingGame [scores=" + scores + ", frames=" + frames + "]";
+	}
 }

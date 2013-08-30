@@ -46,5 +46,4 @@ public class Symbol {
 		}
 		return symbol;
 	}
-
 }

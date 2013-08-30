@@ -29,6 +29,11 @@ public class Identifier {
 	}
 
 	public boolean isValid() {
+		for (int roll : rolls) {
+			if (roll > 10)
+				return false;
+		}
+		
 		if (isLast) {
 			if (isStrikeForLastRoll() || isSpare())
 				return rollsSum() <= 20;

@@ -72,11 +72,11 @@ public class IdentifierTest extends TestCase {
 		assertFalse(id.isValid());
 		
 		List<Integer> rolls3 = new ArrayList<Integer>();
-		rolls3.add(10);
-		rolls3.add(8);
-		rolls3.add(8);
+		rolls3.add(5);
+		rolls3.add(5);
+		rolls3.add(5);
 		id = new Identifier(rolls3, true);
-		assertFalse(id.isValid());
+		assertTrue(id.isValid());
 	}
 	
 }

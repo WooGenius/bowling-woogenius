@@ -5,11 +5,11 @@ import java.util.List;
 public class Identifier {
 
 	private List<Integer> rolls;
-	private boolean lastRoll = false;
+	private boolean isLast = false;
 
-	public Identifier(List<Integer> rolls, boolean lastRoll) {
+	public Identifier(List<Integer> rolls, boolean isLast) {
 		this.rolls = rolls;
-		this.lastRoll = lastRoll;
+		this.isLast = isLast;
 	}
 	
 	public Identifier(List<Integer> rolls) {
@@ -17,7 +17,7 @@ public class Identifier {
 	}
 	
 	public boolean isFinished() {
-		if (lastRoll) {
+		if (isLast) {
 			if (isStrikeForLastRoll() || 
 					isDoubleStrikeForLastRoll() || isSpare())
 				return rolls.size()==3;
@@ -29,7 +29,7 @@ public class Identifier {
 	}
 
 	public boolean isValid() {
-		if (lastRoll) {
+		if (isLast) {
 			if (isStrikeForLastRoll() || isSpare())
 				return rollsSum() <= 20;
 			if (isDoubleStrikeForLastRoll())

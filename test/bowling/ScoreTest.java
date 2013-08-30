@@ -40,12 +40,11 @@ public class ScoreTest extends TestCase {
 		Score score = new Score();
 		score.push(10);
 		score.push(10);
-		score.push(10);
-		Score nextScore = score.getNextStack();
-		nextScore.push(10);
+		score.push(5);
+		Score nextScore = score.getNextScore();
 		System.out.println(nextScore);
-		assertEquals(30, nextScore.getScore());
-		assertTrue(nextScore.isFinished());
+		assertEquals(0, nextScore.getScore());
+		assertFalse(nextScore.isFinished());
 	}
 	
 	public void testGetNextStackForSpare() throws Exception {
@@ -53,7 +52,7 @@ public class ScoreTest extends TestCase {
 		score.push(5);
 		score.push(5);
 		score.push(3);
-		Score nextScore = score.getNextStack();
+		Score nextScore = score.getNextScore();
 		nextScore.push(5);
 		System.out.println(nextScore);
 		assertEquals(8, nextScore.getScore());

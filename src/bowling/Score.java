@@ -10,6 +10,10 @@ public class Score {
 	public void push(int hittedPin) {
 		scoreStack.push(hittedPin);
 	}
+	
+	public void pop() {
+		scoreStack.pop();
+	}
 
 	public int getScore() {
 		if (isFinished())
@@ -31,13 +35,12 @@ public class Score {
 		}
 	}
 	
-	public Score getNextStack() {
+	public Score getNextScore() {
 		Score nextScore = new Score();
 		if (isStrike()) {
-			System.out.println(scoreStack.peek());
+			int firstPop = scoreStack.pop();
 			nextScore.push(scoreStack.pop());
-			System.out.println(scoreStack.peek());
-			nextScore.push(scoreStack.pop());
+			nextScore.push(firstPop);
 		} else if (isSpare()) {
 			nextScore.push(scoreStack.pop());
 		}
@@ -66,5 +69,6 @@ public class Score {
 	public String toString() {
 		return scoreStack.toString();
 	}
+
 
 }

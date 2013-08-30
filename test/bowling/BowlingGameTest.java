@@ -64,4 +64,65 @@ public class BowlingGameTest extends TestCase {
 		assertEquals(10, symbols.size());
 		System.out.println(symbols);
 	}
+	
+	public void testScore() throws Exception {
+		BowlingGame bowlingGame = new BowlingGame();
+		bowlingGame.hit(5);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(5);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(3);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(7);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(2);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(2);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(0);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(10);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(10);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(10);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(5);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(7);	// invalid pin
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(3);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(10);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(7);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(3);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(7);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(3);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+		bowlingGame.hit(3);
+		System.out.println(bowlingGame.getScores().toString());
+		System.out.println(bowlingGame.getSymbols().toString());
+	}
 }

@@ -12,17 +12,28 @@ public class BowlingGame {
 	private int frameOrder = 1;
 	private boolean isLast;
 	private Identifier id;
+	private Score score = new Score();
 
 	public void hit(int hittedPin) {
 		rolls.add(hittedPin);
 		isLast = (frameOrder == 10);
-		organizeFrame();
+		generateScore(hittedPin);
+		organizeFrame(rolls, isLast);
 	}
 
-	private void organizeFrame() {
+	private void generateScore(int hittedPin) {
+		score.push(hittedPin);
+		if (score.isFinished()) {
+			scores.add(score.getScore());
+			score = score.getNextScore();
+		}
+	}
+
+	private void organizeFrame(List<Integer> rolls, boolean isLast) {
 		id = new Identifier(rolls, isLast);
 		if (!id.isValid()) {
 			System.out.println("Invalid Pin!");
+			score.pop();
 			((Stack<Integer>) rolls).pop();	// remove last integer
 		} else if (curretFrameIsFinished()) {
 			frames.add(new Frame(frameOrder, rolls));
@@ -45,6 +56,10 @@ public class BowlingGame {
 			symbols.add(frame.getSymbol());
 		}
 		return symbols;
+	}
+
+	public List<Integer> getScores() {
+		return scores;
 	}
 	
 }

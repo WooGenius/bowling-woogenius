@@ -47,7 +47,7 @@ public class Score {
 		return nextScore;
 	}
 	
-	public boolean isSpare() {
+	private boolean isSpare() {
 		if (scoreStack.size()>=2) {
 			int firstScore = scoreStack.get(0);
 			int secondScore = scoreStack.get(1);
@@ -57,7 +57,7 @@ public class Score {
 		}
 	}
 
-	public boolean isStrike() {
+	private boolean isStrike() {
 		if (scoreStack.size()>=1) {
 			return scoreStack.get(0)==10;
 		} else {

@@ -11,7 +11,6 @@ public class ScoreTest extends TestCase {
 		assertEquals(0, score.getScore());
 		score.push(10);
 		assertTrue(score.isFinished());
-		assertTrue(score.isStrike());
 		assertEquals(30, score.getScore());
 	}
 	
@@ -23,7 +22,6 @@ public class ScoreTest extends TestCase {
 		assertEquals(0, score.getScore());
 		score.push(10);
 		assertTrue(score.isFinished());
-		assertTrue(score.isSpare());
 		assertEquals(20, score.getScore());
 	}
 	

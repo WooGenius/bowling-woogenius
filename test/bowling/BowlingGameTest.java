@@ -5,7 +5,7 @@ import java.util.List;
 import junit.framework.TestCase;
 
 public class BowlingGameTest extends TestCase {
-	public void testHit() throws Exception {
+	public void testRoll() throws Exception {
 		BowlingGame bowlingGame = new BowlingGame();
 		bowlingGame.roll(10);
 		bowlingGame.roll(10);
@@ -17,7 +17,7 @@ public class BowlingGameTest extends TestCase {
 		System.out.println(symbols);
 	}
 	
-	public void testHit2() throws Exception {
+	public void testRoll2() throws Exception {
 		BowlingGame bowlingGame = new BowlingGame();
 		bowlingGame.roll(10);
 		bowlingGame.roll(10);
@@ -38,7 +38,7 @@ public class BowlingGameTest extends TestCase {
 		System.out.println(symbols);
 	}
 	
-	public void testHit3() throws Exception {
+	public void testRoll3() throws Exception {
 		BowlingGame bowlingGame = new BowlingGame();
 		bowlingGame.roll(5);
 		bowlingGame.roll(5);

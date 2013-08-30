@@ -35,10 +35,10 @@ public class Identifier {
 		}
 		
 		if (isLast) {
-			if (isStrikeForLastRoll() || isSpare())
-				return rollsSum() <= 20;
 			if (isDoubleStrikeForLastRoll())
 				return rollsSum() <= 30;
+			if (isStrikeForLastRoll() || isSpare())
+				return rollsSum() <= 20;
 		}
 		return rollsSum() <= 10;
 	}
@@ -66,7 +66,16 @@ public class Identifier {
 	}
 	
 	boolean isDoubleStrikeForLastRoll() {
-		return (rolls.get(0)==10) && (rolls.get(1)==10);
+		if (rolls.size() >= 2) {
+			return (rolls.get(0)==10) && (rolls.get(1)==10);
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Identifier [rolls=" + rolls + ", isFinished()=" + isFinished()
+				+ ", isValid()=" + isValid() + "]";
 	}
 
 }

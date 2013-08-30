@@ -13,12 +13,19 @@ public class BowlingGame implements BowlingGameable {
 	private boolean isLast;
 	private Identifier id;
 	private Score score = new Score();
+	private boolean currentFrameIsFinished;
 
 	public void roll(int hittedPin) throws GameOverException {
 		rolls.add(hittedPin);
 		isLast = (frameOrder == 10);
+		id = new Identifier(rolls, isLast);
+		if (!id.isValid()) {
+			System.out.println("Invalid Pin!");
+			((Stack<Integer>) rolls).pop();	// remove last integer
+			return;
+		}
+		organizeFrame();
 		generateScore(hittedPin);
-		organizeFrame(rolls, isLast);
 		if (frameOrder==11)
 			throw new GameOverException(this);
 			
@@ -26,27 +33,23 @@ public class BowlingGame implements BowlingGameable {
 
 	private void generateScore(int hittedPin) {
 		score.push(hittedPin);
-		if (score.isFinished()) {
+		while (score.isFinished()) {
 			scores.add(score.getScore());
 			score = score.getNextScore();
 		}
 	}
 
-	private void organizeFrame(List<Integer> rolls, boolean isLast) {
-		id = new Identifier(rolls, isLast);
-		if (!id.isValid()) {
-			System.out.println("Invalid Pin!");
-			score.pop();
-			((Stack<Integer>) rolls).pop();	// remove last integer
-		} else if (curretFrameIsFinished()) {
+	private void organizeFrame() {
+		currentFrameIsFinished = id.isFinished();
+		if (currentFrameIsFinished) {
 			frames.add(new Frame(frameOrder, rolls));
 			rolls.clear();
 			frameOrder++;
 			}
 	}
 
-	private boolean curretFrameIsFinished() {
-		return id.isFinished();
+	public boolean currentFrameIsFinished() {
+		return currentFrameIsFinished;
 	}
 
 	public int frameSize() {

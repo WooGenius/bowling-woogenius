@@ -59,4 +59,24 @@ public class IdentifierTest extends TestCase {
 		assertFalse(id.isFinished());
 	}
 	
+	public void testValid() throws Exception {
+		List<Integer> rolls = new ArrayList<Integer>();
+		rolls.add(11);
+		Identifier id = new Identifier(rolls);
+		assertFalse(id.isValid());
+		
+		List<Integer> rolls2 = new ArrayList<Integer>();
+		rolls2.add(8);
+		rolls2.add(8);
+		id = new Identifier(rolls2);
+		assertFalse(id.isValid());
+		
+		List<Integer> rolls3 = new ArrayList<Integer>();
+		rolls3.add(10);
+		rolls3.add(8);
+		rolls3.add(8);
+		id = new Identifier(rolls3, true);
+		assertFalse(id.isValid());
+	}
+	
 }

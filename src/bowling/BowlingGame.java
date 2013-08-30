@@ -4,7 +4,7 @@ import java.util.*;
 
 import frame.*;
 
-public class BowlingGame {
+public class BowlingGame implements BowlingGameOperations {
 	private List<Integer> rolls = new Stack<Integer>();
 	private List<Integer> scores = new ArrayList<Integer>();
 	private List<Frame> frames = new ArrayList<Frame>();

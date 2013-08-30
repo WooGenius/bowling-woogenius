@@ -14,7 +14,7 @@ public class BowlingGame {
 	private Identifier id;
 	private Score score = new Score();
 
-	public void hit(int hittedPin) {
+	public void roll(int hittedPin) {
 		rolls.add(hittedPin);
 		isLast = (frameOrder == 10);
 		generateScore(hittedPin);

@@ -10,8 +10,8 @@ public class PlayerTest extends TestCase {
 	
 	public void testStartRoll() throws Exception {
 		Player player = new Player("WJ");
-		player.startRoll();
-		player.startRoll();
+		player.startRoll();	// first turn
+		player.startRoll();	// second turn
 		player.startRoll();
 		player.startRoll();
 		player.startRoll();

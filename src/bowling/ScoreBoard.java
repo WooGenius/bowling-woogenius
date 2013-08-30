@@ -10,7 +10,7 @@ public class ScoreBoard {
 	public static void main(String[] args) {
 		scanner = new Scanner(System.in);
 		
-		System.out.printf("How many people? ");		// init players
+		System.out.println("How many people? ");		// init players
 		int numOfPeople = scanner.nextInt();
 		for (int i = 0; i < numOfPeople; i++) {
 			System.out.printf("Input Player%d's name(3 letters): ",i+1);

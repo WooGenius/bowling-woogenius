@@ -55,7 +55,16 @@ public class BowlingGame {
 		for (Frame frame : frames) {
 			symbols.add(frame.getSymbol());
 		}
+		
+		if (!rolls.isEmpty()) {
+			symbols.add(getRollSymbol());
+		}
 		return symbols;
+	}
+
+	private String getRollSymbol() {
+		Symbol symbol = new Symbol(rolls);
+		return symbol.getSymbol();
 	}
 
 	public List<Integer> getScores() {

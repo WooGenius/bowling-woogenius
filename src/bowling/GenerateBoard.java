@@ -7,11 +7,11 @@ public class GenerateBoard {
 	public static final String NEWLINE =
 			System.getProperty("line.separator");
 	
-	public static void Generate() {
+	public static void generate() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("| NAME |  01  |  02  |  03  |  04  |  05  |  06  |  07  |  08  |  09  |  10  |");
 		sb.append(NEWLINE);
-		for (Player player : ScoreBoard.players) {
+		for (Player player : StartGame.players) {
 			sb.append(makeSymbolString(player));
 			sb.append(makeScoreString(player));
 		}
@@ -47,7 +47,7 @@ public class GenerateBoard {
 	}
 
 	private static String makeScoreString(Player player) {
-		List<Integer> score = player.getScores();
+		List<Integer> score = player.getAddedScores();
 		StringBuilder scoreString = new StringBuilder();
 		scoreString.append("|      |");
 		for (int i = 0; i < 10; i++) {

@@ -1,7 +1,6 @@
 package bowling;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Player {
 	
@@ -23,13 +22,10 @@ public class Player {
 				System.out.printf("%s's turn : ", name);
 				int hittedPin = scanner.nextInt();
 				bowlingGame.roll(hittedPin);
-//				System.out.println(getScores());
-//				System.out.println(getSymbols());
-//				System.out.println(currentFrameIsFinished());
+				GenerateBoard.generate();
 			} while (!currentFrameIsFinished());
 		} catch (GameOverException e) {
 			System.out.println(name+" Game Over");
-//			e.printStackTrace();
 		}
 	}
 
@@ -37,8 +33,18 @@ public class Player {
 		return bowlingGame.currentFrameIsFinished();
 	}
 
-	public List<Integer> getScores() {
-		return bowlingGame.getScores();
+	public List<Integer> getAddedScores() {
+		List<Integer> scores = bowlingGame.getScores();
+		List<Integer> addedScores = new ArrayList<Integer>();
+		
+		for (int i = 0; i < scores.size(); i++) {
+			int addedScore = 0;
+			for (int j = 0; j <= i; j++) {
+				addedScore += scores.get(j); 
+			}
+			addedScores.add(addedScore);
+		}
+		return addedScores;
 	}
 	
 	public List<String> getSymbols() {

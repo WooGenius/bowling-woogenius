@@ -5,7 +5,5 @@ public class GameOverException extends Exception{
 	
 	public GameOverException(BowlingGame bowlingGame) {
 		this.bowlingGame = bowlingGame;
-		System.out.println(bowlingGame.toString());
-		System.out.println("GameOver");
 	}	
 }

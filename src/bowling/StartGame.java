@@ -2,7 +2,7 @@ package bowling;
 
 import java.util.*;
 
-public class ScoreBoard {
+public class StartGame {
 	
 	private static Scanner scanner;
 	static List<Player> players = new ArrayList<Player>();
@@ -18,11 +18,10 @@ public class ScoreBoard {
 			players.add(new Player(name));
 		}
 		
-		GenerateBoard.Generate();
+		GenerateBoard.generate();
 		for (int i = 0; i < 10; i++) {	// 10 frame
 			for (Player player : players) {
 				player.startRoll();
-				GenerateBoard.Generate();
 			}
 		}
 	}

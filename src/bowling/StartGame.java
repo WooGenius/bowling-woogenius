@@ -24,5 +24,25 @@ public class StartGame {
 				player.startRoll();
 			}
 		}
+		printResult();
+	}
+
+	private static void printResult() {
+		System.out.println(" RESULT");
+		for (Player player : players) {
+			String name = player.getName();
+			int lastScore = player.getScoreSum();
+			System.out.println(name+"  "+lastScore);
+		}
+		Collections.sort(players);
+		int bestScore = players.get(0).getScoreSum();
+		for (Player player : players) {
+			String name = player.getName();
+			if (player.getScoreSum()==bestScore) {
+				System.out.println(name+"  "+"WIN!");
+			} else {
+				return;
+			}
+		}
 	}
 }

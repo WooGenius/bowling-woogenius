@@ -27,7 +27,7 @@ public class BowlingGame implements BowlingGameable {
 		organizeFrame();
 		generateScore(hittedPin);
 		if (frameOrder==11)
-			throw new GameOverException(this);
+			throw new GameOverException();
 			
 	}
 

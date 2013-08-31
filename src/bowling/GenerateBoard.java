@@ -15,6 +15,7 @@ public class GenerateBoard {
 			sb.append(makeSymbolString(player));
 			sb.append(makeScoreString(player));
 		}
+		sb.deleteCharAt(sb.lastIndexOf(NEWLINE));
 		System.out.println(sb.toString());
 	}
 

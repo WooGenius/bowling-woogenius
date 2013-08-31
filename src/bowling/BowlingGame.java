@@ -22,6 +22,7 @@ public class BowlingGame implements BowlingGameable {
 		if (!id.isValid()) {
 			System.out.println("Invalid Pin!");
 			((Stack<Integer>) rolls).pop();	// remove last integer
+			currentFrameIsFinished = false;
 			return;
 		}
 		organizeFrame();

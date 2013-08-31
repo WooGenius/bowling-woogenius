@@ -23,9 +23,9 @@ public class Player {
 				System.out.printf("%s's turn : ", name);
 				int hittedPin = scanner.nextInt();
 				bowlingGame.roll(hittedPin);
-				System.out.println(getScores());
-				System.out.println(getSymbols());
-				System.out.println(currentFrameIsFinished());
+//				System.out.println(getScores());
+//				System.out.println(getSymbols());
+//				System.out.println(currentFrameIsFinished());
 			} while (!currentFrameIsFinished());
 		} catch (GameOverException e) {
 			System.out.println(name+" Game Over");
